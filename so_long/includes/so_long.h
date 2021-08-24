@@ -6,7 +6,7 @@
 /*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:24:48 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/08/24 11:53:55 by sbouzidi         ###   ########.fr       */
+/*   Updated: 2021/08/24 14:02:41 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 # include "../gnl/get_next_line.h"
-# include "../mlx/mlx.h"
+# include <mlx.h>
 
 typedef struct s_mapform
 {
@@ -34,7 +34,13 @@ typedef struct s_mapform
     int error;
 } t_mapform;
 
-
+typedef struct	s_data {
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}				t_data;
 
 int check_map(char *file, t_mapform *mapcheck);
 int fill_map(char *file, t_mapform *mapcheck);

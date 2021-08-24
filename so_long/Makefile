@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+         #
+#    By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/20 19:17:40 by samirbouzid       #+#    #+#              #
-#    Updated: 2021/08/23 14:52:01 by samirbouzid      ###   ########.fr        #
+#    Updated: 2021/08/24 13:27:55 by sbouzidi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,8 +33,8 @@ all	:	$(NAME)
 $(NAME)	:
 	make -C libft/
 	$(CC) $(FLAGS) -I $(LIBINC) -I includes/ -c $(SRC)
-	$(CC) $(FLAGS) $(OBJ) -L libft/ -lft -o $(NAME)
-
+	$(CC) $(FLAGS) $(OBJ) -L libft/ -lft -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
+	
 clean	:
 	make clean -C libft/
 	rm -f $(OBJ)
