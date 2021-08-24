@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
+/*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:33:43 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/08/22 15:33:58 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/08/24 12:41:49 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,21 @@ static int  count_lines(char *file)
     return (count);
 }
 
-void fill_map(char *file, t_mapform *mapcheck)
+int fill_map(char *file, t_mapform *mapcheck)
 {
     int i;
     int fd;
+    int size;   
     
     i = 0;
+    size = ft_strlen(file) - 1;
     fd = open(file, O_RDONLY);
+    if (fd < 0)
+        return (1);
+    if (file[size] != 'r' || file[size - 1] != 'e')
+        return (1);
+    if (file[size - 2] != 'b' || file[size - 3] != '.')
+          return (1);
     while (i <= mapcheck->height - 1)
     {
         get_next_line(fd, &mapcheck->map[i]);
@@ -52,6 +60,7 @@ void fill_map(char *file, t_mapform *mapcheck)
     mapcheck->top = mapcheck->map[0];
     mapcheck->bottom = mapcheck->map[i - 1];
     close(fd);
+    return (0);
 }
 
 int check_characters(t_mapform *mapcheck)
@@ -61,18 +70,25 @@ int check_characters(t_mapform *mapcheck)
     
     i = 0;
     j = 0;
-    mapcheck->characters = "01CEP";
     while (i <= mapcheck->height - 1)
     {
         j = 0;
         while (mapcheck->map[i][j]!= '\0')
         {
+            if (mapcheck->map[i][j] == 'P')
+                mapcheck->player++;
+            if (mapcheck->map[i][j] == 'C')
+                mapcheck->colectible++;
+            if (mapcheck->map[i][j] == 'E')
+                mapcheck->exit++;           
             if (!ft_strchr(mapcheck->characters, (int)mapcheck->map[i][j]))    
                 return (1);
             j++;
         }
         i++;
     }
+   if (!mapcheck->player || !mapcheck->colectible || !mapcheck->exit)
+        return (1);   
     return (0);
 }
 
@@ -121,8 +137,13 @@ int check_map(char *file, t_mapform *mapcheck)
     mapcheck->error = 0;
     mapcheck->height = 0;
     mapcheck->height = count_lines(file); 
+    mapcheck->characters = "01CEP";
+    mapcheck->player = 0;
+    mapcheck->colectible = 0;
+    mapcheck->exit = 0;    
     mapcheck->map = malloc(sizeof(char*) * mapcheck->height);
-    fill_map(file, mapcheck);
+    if (fill_map(file, mapcheck))
+        return (1);
     if (check_characters(mapcheck))
         return (1);
     if (check_square(mapcheck))
