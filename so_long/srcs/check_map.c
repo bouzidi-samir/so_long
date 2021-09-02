@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:33:43 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/08/24 12:41:49 by sbouzidi         ###   ########.fr       */
+/*   Updated: 2021/08/31 15:17:00 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,6 @@ int check_map(char *file, t_mapform *mapcheck)
         return (1);
     if (mapcheck->error)
         return (1);
-    free_map(mapcheck);
+ //   free_map(mapcheck);
     return (0);
 }

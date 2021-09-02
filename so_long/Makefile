@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+         #
+#    By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/20 19:17:40 by samirbouzid       #+#    #+#              #
-#    Updated: 2021/08/24 13:27:55 by sbouzidi         ###   ########.fr        #
+#    Updated: 2021/08/30 18:39:57 by samirbouzid      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBINC = libft/includes
 
 LIB = libft.a
 
-OBJ = main.o check_map.o utile.o get_next_line.o
+OBJ = main.o check_map.o utile.o display.o event.o get_next_line.o 
 
 CC = gcc
 
@@ -32,8 +32,8 @@ all	:	$(NAME)
 
 $(NAME)	:
 	make -C libft/
-	$(CC) $(FLAGS) -I $(LIBINC) -I includes/ -c $(SRC)
-	$(CC) $(FLAGS) $(OBJ) -L libft/ -lft -lmlx -framework OpenGL -framework AppKit  -o $(NAME)
+	$(CC) $(FLAGS) -I $(LIBINC) -I includes/ -I /usr/X11/include -c $(SRC) 
+	$(CC) $(FLAGS) $(OBJ) -L libft/ -lft -L /usr/X11/lib -l mlx -framework OpenGL -framework AppKit  -o $(NAME)
 	
 clean	:
 	make clean -C libft/
