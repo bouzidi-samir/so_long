@@ -6,36 +6,11 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:33:43 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/08/31 15:17:00 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/13 12:04:44 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-static int  count_lines(char *file) 
-{
-    int fd;
-    int count;
-    int rcount;
-    char    c;
-
-    fd = open(file, O_RDONLY);
-    if (!fd)
-        return (-1);
-    count = 1;
-    while (1)
-    {
-        rcount = read(fd, &c, 1);
-        if (rcount == 0)
-            break ;
-        if (rcount < 0)
-            return (-1);
-        if (c == '\n')
-            count++;
-    }
-    close(fd);
-    return (count);
-}
 
 int fill_map(char *file, t_mapform *mapcheck)
 {
@@ -87,8 +62,6 @@ int check_characters(t_mapform *mapcheck)
         }
         i++;
     }
-   if (!mapcheck->player || !mapcheck->colectible || !mapcheck->exit)
-        return (1);   
     return (0);
 }
 
@@ -101,11 +74,17 @@ int check_square(t_mapform *mapcheck)
     while (i <= mapcheck->height -1)
     {
         if ((int)ft_strlen(mapcheck->map[i]) != mapcheck->width)
+        {    
+            ft_putstr_fd("The map must be rectangular\n", 2);
             return (1);
+        }
         i++;
     }
     if (mapcheck->width == mapcheck->height)
+    {
+        ft_putstr_fd("The map must be rectangular\n", 2);
         return (1);
+    }
     return (0);
 }
 
@@ -134,24 +113,28 @@ int check_wall(t_mapform *mapcheck)
 
 int check_map(char *file, t_mapform *mapcheck)
 {
-    mapcheck->error = 0;
-    mapcheck->height = 0;
-    mapcheck->height = count_lines(file); 
-    mapcheck->characters = "01CEP";
-    mapcheck->player = 0;
-    mapcheck->colectible = 0;
-    mapcheck->exit = 0;    
-    mapcheck->map = malloc(sizeof(char*) * mapcheck->height);
+    init_map(file, mapcheck);
     if (fill_map(file, mapcheck))
+    {
+        mapcheck->error_message = "The map description must be a file with the .ber extension\n";
         return (1);
+    }
     if (check_characters(mapcheck))
+    {   
+        mapcheck->error_message = "The map must be composed of only 5 possible characters : 0, 1, C, E or P\n";
         return (1);
+    }
     if (check_square(mapcheck))
         return (1);
     if (check_wall(mapcheck))
+    {
+        mapcheck->error_message = "The map must be closed/surrounded by walls\n";
         return (1);
-    if (mapcheck->error)
-        return (1);
- //   free_map(mapcheck);
+    }
+    if (mapcheck->player != 1 || !mapcheck->colectible || !mapcheck->exit)
+    {
+        mapcheck->error_message = "The map must have at least one exit, one collectible, and one starting position\n";
+        return (1); 
+    }
     return (0);
 }
