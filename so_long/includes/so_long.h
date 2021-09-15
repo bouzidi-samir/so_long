@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:24:48 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/13 13:31:17 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/15 13:57:49 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,57 +23,70 @@
 
 typedef struct s_mapform
 {
-    char    **map;
-    char    *characters;
-    int height;
-    int width;    
-    char    *top;
-    char    *bottom;
-    int player;
-    int colectible;
-    int exit;
-    char    *error_message;
-    int error;
-} t_mapform;
+	char	**map;
+	char	*characters;
+	int		height;
+	int		width;
+	char	*top;
+	char	*bottom;
+	int		player;
+	int		colectible;
+	int		exit;
+	char	*error_message;
+	int		error;
+}	t_mapform;
 
-typedef struct	s_bloc 
+typedef struct s_bloc
 {
 	void	*img;
-    char    type;
-    int x;
-    int y;   
-}				t_bloc;
+	char	type;
+	int		x;
+	int		y;
+}	t_bloc;
 
-typedef struct	s_data  
+typedef struct s_path
 {
-	int width;
-    int height;
-    void    *mlx;
-    void    *win;
-    void	*img;
-    void    *exit_img;
-    char touch;
-    struct s_bloc  **map;
-    struct s_bloc   player;
-    struct s_bloc   fond;
-    int colectible;
-}				t_data;
+	char	*vide;
+	char	*mur;
+	char	*play;
+	char	*obj;
+	char	*exit;
+}	t_path;
 
-int init_map(char *file, t_mapform *mapcheck);
-int check_map(char *file, t_mapform *mapcheck);
-int  count_lines(char *file);
-int fill_map(char *file, t_mapform *mapcheck);
+typedef struct s_data
+{
+	int				width;
+	int				height;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	void			*exit_img;
+	int				end;
+	char			touch;
+	struct s_path	path;
+	struct s_bloc	**map;
+	struct s_bloc	player;
+	struct s_bloc	fond;
+	int				colectible;
+}	t_data;
+
+int		init_map(char *file, t_mapform *mapcheck);
+int		check_map(char *file, t_mapform *mapcheck);
+int		count_lines(char *file);
+int		fill_map(char *file, t_mapform *mapcheck);
 void	free_map(t_mapform *mapcheck);
-int check_characters(t_mapform *mapcheck);
-int check_square(t_mapform *mapcheck);
-int check_wall(t_mapform *mapcheck);
-int init_game(t_mapform *mapcheck, t_data *game);
-void map_parsing(t_mapform *mapcheck, t_bloc **mapgame, t_data  *game);
-int	get_tab(t_data *game, t_mapform *mapcheck);
-void    put_blocs(t_bloc element, t_data  *game, int x, int y);
-int moove_player(int keycode, t_data *game);
-void	free_tab(t_mapform *mapcheck, t_data *game);
-void left_right(t_data *game, int keycode, int x, int y);
-void top_bottom(t_data *game, int keycode, int x, int y);
+int		check_characters(t_mapform *mapcheck);
+int		check_square(t_mapform *mapcheck);
+int		check_wall(t_mapform *mapcheck);
+int		init_game(t_mapform *mapcheck, t_data *game);
+void	map_parsing(t_mapform *mapcheck, t_bloc **mapgame, t_data *game);
+int		get_tab(t_data *game, t_mapform *mapcheck);
+void	put_blocs(t_bloc element, t_data *game, int x, int y);
+int		moove_player(int keycode, t_data *game);
+void	free_tab(t_data *game);
+void	left_right(t_data *game, int keycode, int x, int y);
+void	top_bottom(t_data *game, int keycode, int x, int y);
+int		end_game(t_data *game);
+int	check_victory(t_data *game);
 
 #endif
