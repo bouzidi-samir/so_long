@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:24:48 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/15 13:57:49 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/16 11:46:24 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ void	left_right(t_data *game, int keycode, int x, int y);
 void	top_bottom(t_data *game, int keycode, int x, int y);
 int		end_game(t_data *game);
 int	check_victory(t_data *game);
+void	get_image_direction(int keycode, t_data *game);
+int	key_release(int keycode, t_data *game);
 
 #endif

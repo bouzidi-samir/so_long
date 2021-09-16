@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:02:22 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/15 21:53:22 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/16 11:25:54 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	init_game(t_mapform *mapcheck, t_data *game)
 	free_map(mapcheck);
 	free(mapcheck);
 	mlx_hook(game->win, 2, 1L << 0, moove_player, game);
+	mlx_hook(game->win, 3, 1L << 1, key_release, game);
 	mlx_loop(game->mlx);
 	return (1);
 }

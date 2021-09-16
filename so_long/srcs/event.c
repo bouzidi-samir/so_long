@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:52:24 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/15 15:06:04 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/16 12:04:43 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,17 +16,15 @@ void	left_right(t_data *game, int keycode, int x, int y)
 {
 	int	direction;
 	int	newblock;
-
+	
 	if (keycode == 124)
-	{
 		direction = x + 1;
-		newblock = game->player.x + SIZE_BLOC;
-	}
-	if (keycode == 123)
-	{
+	else
 		direction = x - 1;
+	if (keycode == 124)	
+		newblock = game->player.x + SIZE_BLOC;
+	else
 		newblock = game->player.x - SIZE_BLOC;
-	}
 	if (game->map[y][direction].type != '1')
 	{
 		if (game->map[y][direction].type == 'C')
@@ -40,8 +38,6 @@ void	left_right(t_data *game, int keycode, int x, int y)
 			mlx_put_image_to_window(game->mlx, game->win, game->fond.img, game->player.x, game->player.y);
 		game->player.x = newblock;
 		mlx_put_image_to_window(game->mlx, game->win, game->player.img, game->player.x, game->player.y);
-		//if (game->map[y][x].type == 'E' && game->colectible == 0)
-		//	end_game(game);
 	}
 }
 
@@ -49,17 +45,15 @@ void	top_bottom(t_data *game, int keycode, int x, int y)
 {
 	int	direction;
 	int	newblock;
-
+	
 	if (keycode == 125)
-	{
 		direction = y + 1;
-		newblock = game->player.y + SIZE_BLOC;
-	}
-	if (keycode == 126)
-	{
+	else 
 		direction = y - 1;
+	if (keycode == 125)
+		newblock = game->player.y + SIZE_BLOC;
+	else
 		newblock = game->player.y - SIZE_BLOC;
-	}
 	if (game->map[direction][x].type != '1')
 	{
 		if (game->map[direction][x].type == 'C')
@@ -76,12 +70,6 @@ void	top_bottom(t_data *game, int keycode, int x, int y)
 	}
 }
 
-int	check_victory(t_data *game)
-{
-	end_game(game);
-	return (0);
-}
-
 int	moove_player(int keycode, t_data *game)
 {
 	int	x;
@@ -89,6 +77,7 @@ int	moove_player(int keycode, t_data *game)
 	
 	x = (game->player.x / (SIZE_BLOC));
 	y = (game->player.y / (SIZE_BLOC));
+	get_image_direction(keycode, game);
 	if (keycode == 123 || keycode == 124)
 		left_right(game, keycode, x, y);
 	if (keycode == 125 || keycode == 126)
@@ -98,11 +87,16 @@ int	moove_player(int keycode, t_data *game)
 	return (0);
 }
 
-int	end_game(t_data *game)
+int	key_release(int keycode, t_data *game)
 {
-	mlx_destroy_window(game->mlx, game->win);
-	free_tab(game);
-	free(game);
-	exit(0);
+	int	x;
+	int	y;
+	int	k;
+	
+	k = keycode;
+	x = (game->player.x / (SIZE_BLOC));
+	y = (game->player.y / (SIZE_BLOC));
+	if (game->map[y][x].type == 'E' && game->colectible == 0)
+		end_game(game);
 	return (0);
 }

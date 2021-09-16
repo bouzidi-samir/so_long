@@ -6,11 +6,38 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:44:49 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/14 12:55:06 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/16 10:17:56 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	get_image_direction(int keycode, t_data *game)
+{
+	int	h;
+	int	w;
+	
+	if (keycode == 123)
+	{
+		game->path.play = "img/mario_gauche1.xpm";
+		game->player.img = mlx_xpm_file_to_image(game->mlx, game->path.play, &w, &h);
+	}
+	if (keycode == 124)
+	{
+		game->path.play = "img/mario_droite1.xpm";
+		game->player.img = mlx_xpm_file_to_image(game->mlx, game->path.play, &w, &h);
+	}
+	if (keycode == 125)
+	{
+		game->path.play = "img/mario_bas1.xpm";
+		game->player.img = mlx_xpm_file_to_image(game->mlx, game->path.play, &w, &h);
+	}
+	if (keycode == 126)
+	{
+		game->path.play = "img/mario_haut1.xpm";
+		game->player.img = mlx_xpm_file_to_image(game->mlx, game->path.play, &w, &h);
+	}
+}
 
 void	put_blocs(t_bloc element, t_data *game, int x, int y)
 {

@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 19:14:05 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/14 10:34:27 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/16 11:48:06 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,12 @@ void	free_map(t_mapform *mapcheck)
 		free(mapcheck->map[i]);
 	}
 	free(mapcheck->map);
+}
+
+int	end_game(t_data *game)
+{
+	free_tab(game);
+	free(game);
+	exit(0);
+	return (0);
 }
