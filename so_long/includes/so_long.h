@@ -6,13 +6,17 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:24:48 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/16 11:46:24 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/16 21:57:01 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # define SIZE_BLOC 33
+# define GAUCHE 123
+# define DROITE 124
+# define HAUT 126
+# define BAS 125
 
 # include "so_long.h"
 # include <fcntl.h>

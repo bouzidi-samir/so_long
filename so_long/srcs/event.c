@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:52:24 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/16 12:04:43 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/16 22:00:36 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,11 @@ void	left_right(t_data *game, int keycode, int x, int y)
 	int	direction;
 	int	newblock;
 	
-	if (keycode == 124)
+	if (keycode == DROITE)
 		direction = x + 1;
 	else
 		direction = x - 1;
-	if (keycode == 124)	
+	if (keycode == DROITE)	
 		newblock = game->player.x + SIZE_BLOC;
 	else
 		newblock = game->player.x - SIZE_BLOC;
@@ -46,11 +46,11 @@ void	top_bottom(t_data *game, int keycode, int x, int y)
 	int	direction;
 	int	newblock;
 	
-	if (keycode == 125)
+	if (keycode == BAS)
 		direction = y + 1;
 	else 
 		direction = y - 1;
-	if (keycode == 125)
+	if (keycode == BAS)
 		newblock = game->player.y + SIZE_BLOC;
 	else
 		newblock = game->player.y - SIZE_BLOC;
@@ -78,9 +78,9 @@ int	moove_player(int keycode, t_data *game)
 	x = (game->player.x / (SIZE_BLOC));
 	y = (game->player.y / (SIZE_BLOC));
 	get_image_direction(keycode, game);
-	if (keycode == 123 || keycode == 124)
+	if (keycode == GAUCHE || keycode == DROITE)
 		left_right(game, keycode, x, y);
-	if (keycode == 125 || keycode == 126)
+	if (keycode == BAS || keycode == HAUT)
 		top_bottom(game, keycode, x, y);
 	if (keycode == 53)
 		end_game(game);
