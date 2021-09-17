@@ -6,7 +6,7 @@
 /*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:52:24 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/17 10:16:01 by sbouzidi         ###   ########.fr       */
+/*   Updated: 2021/09/17 13:05:15 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,5 +108,12 @@ int	key_release(int keycode, t_data *game)
 	y = (game->player.y / (SIZE_BLOC));
 	if (game->map[y][x].type == 'E' && game->colectible == 0)
 		end_game(game);
+	return (0);
+}
+
+int	ft_destroy()
+{
+
+
 	return (0);
 }

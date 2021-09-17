@@ -6,7 +6,7 @@
 /*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:02:22 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/17 10:24:18 by sbouzidi         ###   ########.fr       */
+/*   Updated: 2021/09/17 12:23:30 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,15 +47,14 @@ int	init_game(t_mapform *mapcheck, t_data *game)
 	game->path.play = "img/mario_droite1.xpm";
 	game->path.exit = "img/exit.xpm";
 	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
-	if (get_tab(game, mapcheck))
-		return (-1);
+	get_tab(game, mapcheck);
 	map_parsing(mapcheck, game->map, game);
 	free_map(mapcheck);
 	free(mapcheck);
 	mlx_hook(game->win, 2, 1L << 0, moove_player, game);
 	mlx_hook(game->win, 3, 1L << 1, key_release, game);
 	mlx_loop(game->mlx);
-	return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -80,10 +79,7 @@ int	main(int argc, char **argv)
 		free(mapcheck);
 		return (1);
 	}
-	if (mapcheck == NULL)
-		return (-1);
-	if (init_game(mapcheck, game))
-		return (-1);
+	init_game(mapcheck, game);
 	free_tab(game);
 	free(game);
 	return (0);
