@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
+/*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:52:24 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/16 22:00:36 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/17 10:16:01 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,19 @@ int	moove_player(int keycode, t_data *game)
 	y = (game->player.y / (SIZE_BLOC));
 	get_image_direction(keycode, game);
 	if (keycode == GAUCHE || keycode == DROITE)
+	{
+		game->score++;
+		ft_putnbr_fd(game->score, 1);
+		ft_putstr_fd("\n", 1);
 		left_right(game, keycode, x, y);
+	}
 	if (keycode == BAS || keycode == HAUT)
+	{
+		game->score++;
+		ft_putnbr_fd(game->score, 1);
+		ft_putstr_fd("\n", 1);
 		top_bottom(game, keycode, x, y);
+	}
 	if (keycode == 53)
 		end_game(game);
 	return (0);

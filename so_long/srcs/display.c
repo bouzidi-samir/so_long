@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
+/*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:44:49 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/16 10:17:56 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/17 09:56:14 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,22 @@ void	get_image_direction(int keycode, t_data *game)
 	int	h;
 	int	w;
 	
-	if (keycode == 123)
+	if (keycode == GAUCHE)
 	{
 		game->path.play = "img/mario_gauche1.xpm";
 		game->player.img = mlx_xpm_file_to_image(game->mlx, game->path.play, &w, &h);
 	}
-	if (keycode == 124)
+	if (keycode == DROITE)
 	{
 		game->path.play = "img/mario_droite1.xpm";
 		game->player.img = mlx_xpm_file_to_image(game->mlx, game->path.play, &w, &h);
 	}
-	if (keycode == 125)
+	if (keycode == BAS)
 	{
 		game->path.play = "img/mario_bas1.xpm";
 		game->player.img = mlx_xpm_file_to_image(game->mlx, game->path.play, &w, &h);
 	}
-	if (keycode == 126)
+	if (keycode == HAUT)
 	{
 		game->path.play = "img/mario_haut1.xpm";
 		game->player.img = mlx_xpm_file_to_image(game->mlx, game->path.play, &w, &h);

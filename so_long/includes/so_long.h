@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
+/*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:24:48 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/16 21:57:01 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/17 10:04:34 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # define SIZE_BLOC 33
-# define GAUCHE 123
-# define DROITE 124
-# define HAUT 126
-# define BAS 125
+# define GAUCHE 0
+# define DROITE 2
+# define HAUT 13
+# define BAS 1
 
 # include "so_long.h"
 # include <fcntl.h>
@@ -72,6 +72,7 @@ typedef struct s_data
 	struct s_bloc	player;
 	struct s_bloc	fond;
 	int				colectible;
+	int				score;
 }	t_data;
 
 int		init_map(char *file, t_mapform *mapcheck);

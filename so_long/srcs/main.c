@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
+/*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 15:02:22 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/16 11:25:54 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/17 10:24:18 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,13 @@ int	init_game(t_mapform *mapcheck, t_data *game)
 	game->img = mlx_new_image(game->mlx, game->width, game->height);
 	game->colectible = mapcheck->colectible;
 	game->end = 0;
+	game->score = 0;
 	game->path.vide = "img/fond.xpm";
-    game->path.mur = "img/mur.xpm";
-    game->path.obj = "img/objectif.xpm";
-    game->path.play = "img/mario_droite1.xpm";
-    game->path.exit = "img/exit.xpm";
-    mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
+	game->path.mur = "img/mur.xpm";
+	game->path.obj = "img/objectif.xpm";
+	game->path.play = "img/mario_droite1.xpm";
+	game->path.exit = "img/exit.xpm";
+	mlx_put_image_to_window(game->mlx, game->win, game->img, 0, 0);
 	if (get_tab(game, mapcheck))
 		return (-1);
 	map_parsing(mapcheck, game->map, game);

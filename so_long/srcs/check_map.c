@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
+/*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:33:43 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/13 12:04:44 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/17 10:22:05 by sbouzidi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	check_map(char *file, t_mapform *mapcheck)
 	}
 	if (mapcheck->player != 1 || !mapcheck->colectible || !mapcheck->exit)
 	{
-		mapcheck->error_message = "The map must have at least one exit, one collectible, and one starting position\n";
+		mapcheck->error_message = "Map must have at least one E, one C, one P\n";
 		return (1);
 	}
 	return (0);
