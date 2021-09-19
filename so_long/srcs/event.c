@@ -3,117 +3,116 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sbouzidi <sbouzidi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:52:24 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/17 13:05:15 by sbouzidi         ###   ########.fr       */
+/*   Updated: 2021/09/19 14:01:34 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	left_right(t_data *game, int keycode, int x, int y)
+void	left_right(t_data *g, int keycode, int x, int y)
 {
 	int	direction;
 	int	newblock;
-	
+
 	if (keycode == DROITE)
 		direction = x + 1;
 	else
 		direction = x - 1;
-	if (keycode == DROITE)	
-		newblock = game->player.x + SIZE_BLOC;
+	if (keycode == DROITE)
+		newblock = g->pl.x + SIZE_BLOC;
 	else
-		newblock = game->player.x - SIZE_BLOC;
-	if (game->map[y][direction].type != '1')
+		newblock = g->pl.x - SIZE_BLOC;
+	if (g->map[y][direction].type != '1')
 	{
-		if (game->map[y][direction].type == 'C')
+		if (g->map[y][direction].type == 'C')
 		{
-			game->map[y][direction].type = '0';
-			game->colectible--;
+			g->map[y][direction].type = '0';
+			g->colectible--;
 		}
-		if (game->map[y][x].type == 'E')
-			mlx_put_image_to_window(game->mlx, game->win, game->exit_img, game->player.x, game->player.y);
+		if (g->map[y][x].type == 'E')
+			mlx_put_image_to_window(g->mlx, g->win, g->eximg, g->pl.x, g->pl.y);
 		else
-			mlx_put_image_to_window(game->mlx, game->win, game->fond.img, game->player.x, game->player.y);
-		game->player.x = newblock;
-		mlx_put_image_to_window(game->mlx, game->win, game->player.img, game->player.x, game->player.y);
+			mlx_put_image_to_window(g->mlx, g->win, g->fo.im, g->pl.x, g->pl.y);
+		g->pl.x = newblock;
+		mlx_put_image_to_window(g->mlx, g->win, g->pl.im, g->pl.x, g->pl.y);
 	}
 }
 
-void	top_bottom(t_data *game, int keycode, int x, int y)
+void	top_bottom(t_data *g, int keycode, int x, int y)
 {
 	int	direction;
 	int	newblock;
-	
+
 	if (keycode == BAS)
 		direction = y + 1;
-	else 
+	else
 		direction = y - 1;
 	if (keycode == BAS)
-		newblock = game->player.y + SIZE_BLOC;
+		newblock = g->pl.y + SIZE_BLOC;
 	else
-		newblock = game->player.y - SIZE_BLOC;
-	if (game->map[direction][x].type != '1')
+		newblock = g->pl.y - SIZE_BLOC;
+	if (g->map[direction][x].type != '1')
 	{
-		if (game->map[direction][x].type == 'C')
+		if (g->map[direction][x].type == 'C')
 		{
-			game->colectible--;
-			game->map[direction][x].type = '0';
+			g->colectible--;
+			g->map[direction][x].type = '0';
 		}
-		if (game->map[y][x].type == 'E')
-			mlx_put_image_to_window(game->mlx, game->win, game->exit_img, game->player.x, game->player.y);
+		if (g->map[y][x].type == 'E')
+			mlx_put_image_to_window(g->mlx, g->win, g->eximg, g->pl.x, g->pl.y);
 		else
-			mlx_put_image_to_window(game->mlx, game->win, game->fond.img, game->player.x, game->player.y);
-		game->player.y = newblock;
-		mlx_put_image_to_window(game->mlx, game->win, game->player.img, game->player.x, game->player.y);
+			mlx_put_image_to_window(g->mlx, g->win, g->fo.im, g->pl.x, g->pl.y);
+		g->pl.y = newblock;
+		mlx_put_image_to_window(g->mlx, g->win, g->pl.im, g->pl.x, g->pl.y);
 	}
 }
 
-int	moove_player(int keycode, t_data *game)
+int	moove_player(int keycode, t_data *g)
 {
 	int	x;
 	int	y;
-	
-	x = (game->player.x / (SIZE_BLOC));
-	y = (game->player.y / (SIZE_BLOC));
-	get_image_direction(keycode, game);
+
+	x = (g->pl.x / (SIZE_BLOC));
+	y = (g->pl.y / (SIZE_BLOC));
+	get_image_direction(keycode, g);
 	if (keycode == GAUCHE || keycode == DROITE)
 	{
-		game->score++;
-		ft_putnbr_fd(game->score, 1);
+		g->score++;
+		ft_putnbr_fd(g->score, 1);
 		ft_putstr_fd("\n", 1);
-		left_right(game, keycode, x, y);
+		left_right(g, keycode, x, y);
 	}
 	if (keycode == BAS || keycode == HAUT)
 	{
-		game->score++;
-		ft_putnbr_fd(game->score, 1);
+		g->score++;
+		ft_putnbr_fd(g->score, 1);
 		ft_putstr_fd("\n", 1);
-		top_bottom(game, keycode, x, y);
+		top_bottom(g, keycode, x, y);
 	}
 	if (keycode == 53)
-		end_game(game);
+		end_game(g);
 	return (0);
 }
 
-int	key_release(int keycode, t_data *game)
+int	key_release(int keycode, t_data *g)
 {
 	int	x;
 	int	y;
 	int	k;
-	
+
 	k = keycode;
-	x = (game->player.x / (SIZE_BLOC));
-	y = (game->player.y / (SIZE_BLOC));
-	if (game->map[y][x].type == 'E' && game->colectible == 0)
-		end_game(game);
+	x = (g->pl.x / (SIZE_BLOC));
+	y = (g->pl.y / (SIZE_BLOC));
+	if (g->map[y][x].type == 'E' && g->colectible == 0)
+		end_game(g);
 	return (0);
 }
 
-int	ft_destroy()
+int	destroy_window(t_data *g)
 {
-
-
+	end_game(g);
 	return (0);
 }
