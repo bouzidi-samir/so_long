@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:52:24 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/20 11:53:49 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/20 13:05:12 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ int	key_release(int keycode, t_data *g)
 	if (g->map[y][x].type == 'E' && g->colectible == 0 && g->vic == 0)
 	{
 		g->vic++;
+		mlx_put_image_to_window(g->mlx, g->win, g->fo.im, g->pl.x, g->pl.y);
 		mlx_string_put(g->mlx, g->win, g->width / 2, m, 8, "YOU WON");
 		mlx_hook(g->win, 0, 0, key_release, g);
 	}
