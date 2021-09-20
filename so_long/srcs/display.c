@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:44:49 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/19 14:02:52 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/20 11:27:01 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	put_blocs(t_bloc element, t_data *g, int x, int y)
 
 	element.im = mlx_xpm_file_to_image(g->mlx, g->path.vide, &w, &h);
 	g->fo = element;
+	g->vic = 0;
 	mlx_put_image_to_window(g->mlx, g->win, element.im, x, y);
 	if (element.type == '1')
 		element.im = mlx_xpm_file_to_image(g->mlx, g->path.mur, &w, &h);

@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:24:48 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/20 09:07:31 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/20 11:19:47 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_data
 	int				direction;
 	int				colectible;
 	int				score;
+	int				vic;
 }	t_data;
 
 int		init_map(char *file, t_mapform *mapcheck);

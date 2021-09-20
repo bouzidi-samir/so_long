@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:52:24 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/20 09:11:50 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/20 11:53:49 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	moove_player(int keycode, t_data *g)
 	g->elementx = (g->pl.x / (SIZE_BLOC));
 	g->elementy = (g->pl.y / (SIZE_BLOC));
 	get_image_direction(keycode, g);
-	if (keycode == GAUCHE || keycode == DROITE)
+	if ((keycode == GAUCHE || keycode == DROITE) && g->vic == 0)
 	{
 		left_right(g, keycode, g->elementx, g->elementy);
 		if (g->map[g->elementy][g->direction].type != '1')
@@ -103,12 +103,18 @@ int	key_release(int keycode, t_data *g)
 	int	x;
 	int	y;
 	int	k;
+	int	m;
 
 	k = keycode;
 	x = (g->pl.x / (SIZE_BLOC));
 	y = (g->pl.y / (SIZE_BLOC));
-	if (g->map[y][x].type == 'E' && g->colectible == 0)
-		end_game(g);
+	m = g->height / 2;
+	if (g->map[y][x].type == 'E' && g->colectible == 0 && g->vic == 0)
+	{
+		g->vic++;
+		mlx_string_put(g->mlx, g->win, g->width / 2, m, 8, "YOU WON");
+		mlx_hook(g->win, 0, 0, key_release, g);
+	}
 	return (0);
 }
 
