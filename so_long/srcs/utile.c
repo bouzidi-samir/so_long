@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/20 19:14:05 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/20 10:28:33 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/20 13:36:13 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	free_tab(t_data *g)
 	int	i;
 
 	i = 0;
-	while (i <= g->height / SIZE_BLOC)
+	while (i < g->height / SIZE_BLOC)
 	{
 		free(g->map[i]);
 		i++;
