@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/19 14:24:48 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/19 14:03:29 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/20 09:07:31 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ typedef struct s_data
 	struct s_bloc	**map;
 	struct s_bloc	pl;
 	struct s_bloc	fo;
+	int				elementx;
+	int				elementy;	
+	int				direction;
 	int				colectible;
 	int				score;
 }	t_data;
