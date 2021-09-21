@@ -6,7 +6,7 @@
 /*   By: samirbouzidi <samirbouzidi@student.42.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/26 18:52:24 by samirbouzid       #+#    #+#             */
-/*   Updated: 2021/09/20 13:05:12 by samirbouzid      ###   ########.fr       */
+/*   Updated: 2021/09/21 09:29:07 by samirbouzid      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	top_bottom(t_data *g, int keycode, int x, int y)
 
 int	moove_player(int keycode, t_data *g)
 {
+	key_release(keycode, g);
 	g->elementx = (g->pl.x / (SIZE_BLOC));
 	g->elementy = (g->pl.y / (SIZE_BLOC));
 	get_image_direction(keycode, g);
@@ -84,7 +85,7 @@ int	moove_player(int keycode, t_data *g)
 			ft_putstr_fd("\n", 1);
 		}
 	}
-	if (keycode == BAS || keycode == HAUT)
+	if ((keycode == BAS || keycode == HAUT) && g->vic == 0)
 	{
 		top_bottom(g, keycode, g->elementx, g->elementy);
 		if (g->map[g->direction][g->elementx].type != '1')
